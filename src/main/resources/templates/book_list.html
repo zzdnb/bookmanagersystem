@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NUCSELL-搜索</title>
+    <link rel="stylesheet" type="text/css" href="../css/common.css" th:href="@{/css/common.css}">
+    <link rel="stylesheet" href="../css/search.css" th:href="@{/css/search.css}">
+    <script src="../js/jquery-3.3.1.js" th:src="@{/js/jquery-3.3.1.js}"></script>
+    <script src="../js/getParameter.js" th:src="@{/js/getParameter.js}"></script>
+    <script>
+
+        $(function () {
+            var cid = getParameter("cid");
+            var price = getParameter("price");
+            $.get("/booksInC/" + cid, {}, function (data) {
+                //2.列表数据展示
+                var book_lis = "";
+
+                for (var i = 0; i < data.length; i++) {
+                    var book = data[i];
+                    var li = '<li>\n' +
+                        '                        <div class="img"><img src="' + book.cover + '" style="width: 299px;"></div>\n' +
+                        '                        <div class="text1">\n' +
+                        '                            <p>' + book.name + '</p>\n' +
+                        '                            <br/>\n' +
+                        '                            <p>' + book.description + '</p>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="price">\n' +
+                        '                            <p class="price_num">\n' +
+                        '                                <span>&yen;</span>\n' +
+                        '                                <span>' + book.price + '</span>\n' +
+                        '                                <span>起</span>\n' +
+                        '                            </p>\n' +
+                        '                            <p><a href="http://www.zzdnb.cn:8090">查看详情</a></p>\n' +
+                        '                        </div>\n' +
+                        '                    </li>';
+                    book_lis += li;
+                }
+                if (price == null) {
+                    $("#book").html(book_lis);
+                }
+            });
+            $.get("/getBooks1?cid=" + cid + "&price=" + price, {}, function (data) {
+
+                //2.列表数据展示
+                var book_lis = "";
+
+                for (var i = 0; i < data.length; i++) {
+                    var book = data[i];
+                    var li = '<li>\n' +
+                        '                        <div class="img"><img src="' + book.cover + '" style="width: 299px;"></div>\n' +
+                        '                        <div class="text1">\n' +
+                        '                            <p>' + book.name + '</p>\n' +
+                        '                            <br/>\n' +
+                        '                            <p>' + book.description + '</p>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="price">\n' +
+                        '                            <p class="price_num">\n' +
+                        '                                <span>&yen;</span>\n' +
+                        '                                <span>' + book.price + '</span>\n' +
+                        '                                <span>起</span>\n' +
+                        '                            </p>\n' +
+                        '                            <p><a href="http://www.zzdnb.cn:8090">查看详情</a></p>\n' +
+                        '                        </div>\n' +
+                        '                    </li>';
+                    book_lis += li;
+                }
+                $("#book").html(book_lis);
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+<!--引入头部-->
+<div id="header"></div>
+<div class="page_one">
+    <div class="contant">
+        <div class="crumbs">
+            <img src="../asserts/img/search.png" alt="">
+            <p>NUCSELL><span>搜索结果</span></p>
+        </div>
+        <div class="xinxi clearfix">
+            <div class="left">
+                <div class="header">
+                    <span>书籍信息</span>
+                    <span class="jg">价格</span>
+                </div>
+                <ul id="book">
+
+                </ul>
+                <div class="page_num_inf">
+                    <i></i> 共
+                    <span id="totalPage">5</span>页<span id="totalCount">20</span>条
+                </div>
+                <div class="pageNum">
+                    <ul id="pageNum">
+                        <li><a href="">首页</a></li>
+                        <li class="threeword"><a href="#">上一页</a></li>
+                        <li class="curPage"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li class="threeword"><a href="javascript:;">下一页</a></li>
+                        <li class="threeword"><a href="javascript:;">末页</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--引入头部-->
+<div id="footer"></div>
+<!--导入布局js，共享header和footer-->
+<script type="text/javascript" src="../js/include.js" th:src="@{/js/include.js}"></script>
+</body>
+
+</html>

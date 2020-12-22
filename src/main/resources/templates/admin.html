@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>用户登录界面</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../static/asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../static/asserts/css/signin.css" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
+</head>
+<body class="text-center">
+<img src="https://images.pexels.com/photos/4568216/pexels-photo-4568216.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" width="100%" height="100%">
+<form class="form-signin" action="dashboard.html" th:action="@{/admin/login}" method="post">
+    <font color="orange"><h2 style=" margin-bottom: 30px">NUCSELL</h2></font>
+    <img class="mb-4" th:src="@{https://images.pexels.com/photos/5067339/pexels-photo-5067339.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500}"
+         src="https://images.pexels.com/photos/5067339/pexels-photo-5067339.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" width="100" height="100">
+    <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
+    <!--判断-->
+    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+    <label class="sr-only" th:text="#{login.username}">Username</label>
+    <input type="text" name="username" class="form-control" placeholder="Username" th:placeholder="#{login.username}"
+           required="" autofocus="">
+    <label class="sr-only" th:text="#{login.password}">Password</label>
+    <input type="password" name="password" class="form-control" placeholder="Password"
+           th:placeholder="#{login.password}" required="">
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"/> [[#{login.remember}]]
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block"
+            type="submit" th:text="#{login.btn}">Sign in</button>
+    <p class="mt-5 mb-3 text-muted"></a>欢迎大家访问我的博客zzdnb.cn</a></p>
+    <a class="btn btn-sm" th:href="@{/admin.html(l='zh_CN')}">中文</a>
+    <a class="btn btn-sm" th:href="@{/admin.html(l='en_US')}">English</a>
+</form>
+</body>
+
+</html>
